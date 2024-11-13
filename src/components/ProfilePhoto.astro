@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import meImage from '../media/me.png';
 ---
 
-<Image id='custom-image' class='prevent-select roundImage' src={meImage} alt="Owner" draggable="false" loading="eager"/>
+<Image id='custom-image' class='prevent-select roundImage' src={meImage} alt="Owner" draggable={false} loading="eager"/>
 
 <style>
   #custom-image {
