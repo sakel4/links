@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+
+const { icon, profileUrl } = Astro.props;
+const onclickDestination = `window.location.href='${profileUrl}'`;
+---
+
+<Image
+    id='custom-image'
+    class='prevent-select'
+    src={icon}
+    alt="Social"
+    draggable="false"
+    loading="eager"
+    onclick={onclickDestination}
+/>
+
+<style>
+  #custom-image {
+    border: 0px;
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+</style>

@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import LinkButton from '../components/LinkButton.astro';
+import ProfilePhoto from '../components/ProfilePhoto.astro';
+import SocialIcon from '../components/SocialIcon.astro';
+import Map from '../components/OpenLayersMap.astro';
+
+// media
+import twitterLogo from '../media/twitter-logo.svg';
+import instagramLogo from '../media/instagram-logo.svg';
+---
+
+<Layout title="Sakel's Home">
+	<main>
+	   <!-- HTML Meta Tags -->
+	   <title>Welcome to my site.</title>
+	   <meta name="description" content="This is my personal site.">
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content="https://sakel.dev">
+		<meta property="og:type" content="website">
+		<meta property="og:title" content="Welcome to my site.">
+		<meta property="og:description" content="This is my personal site.">
+		<meta property="og:image" content="https://sakel.dev/preview.png">
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta property="twitter:domain" content="sakel.dev">
+		<meta property="twitter:url" content="https://sakel.dev">
+		<meta name="twitter:title" content="Welcome to my site.">
+		<meta name="twitter:description" content="This is my personal site.">
+		<meta name="twitter:image" content="https://sakel.dev/preview.png">
+		<!-- Meta Tags Generated via https://www.opengraph.xyz -->
+	</main>
+	<body class="doodle">
+        <div class="intro-area">
+            <ProfilePhoto/>
+            <h3 class="splitName">Sakellaris Sfakiotakis</h3>
+            <hr class="spearator">
+            <h3 class="job-title">Software Engineer</h3>
+            <Map/>
+            <div id="links-area">
+                <LinkButton content="About Me" destinationUrl="https://sakel.dev/"/>
+                <LinkButton content="Github" destinationUrl="https://github.com/sakel4"/>
+                <LinkButton content="LinkedIn" destinationUrl="www.linkedin.com/in/sakellaris-sfakiotakis"/>
+                <LinkButton content="Google Scholar" destinationUrl="https://scholar.google.com/citations?user=azQINFoAAAAJ&hl=en"/>
+            </div>
+            <div id="social-area">
+                <SocialIcon icon={twitterLogo} profileUrl="https://x.com/imsakellaris"/>
+                <SocialIcon icon={instagramLogo} profileUrl="https://www.instagram.com/sakel4/"/>
+            </div>
+        </div>
+	</body>
+</Layout>
+
+<style>
+	.intro-area {
+	    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+	}
+
+	.splitName {
+	    width: 20rem;
+		margin-bottom: 0;
+    }
+
+    .spearator {
+        border-top: 1px solid black;
+        width: 15rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .job-title {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    #links-area {
+        margin-top: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    #social-area {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center
+    }
+
+</style>

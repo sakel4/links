@@ -1,0 +1,51 @@
+---
+const time = new Date().toLocaleTimeString('en-US', { timeZone: 'Europe/Athens' });
+---
+
+<script>
+const timeElement = document.getElementById("Timezone");
+
+function updateTime() {
+    const currentTime = new Date().toLocaleTimeString('en-US', { timeZone: 'Europe/Athens' })
+
+    if(timeElement)
+      timeElement.innerText = "Current Local Time is: " + currentTime;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+
+<!-- I should change this in order to be clock and not a static text -->
+<p id="Timezone">Current Local Time is: {time.toString()}</p>
+<div id="map" class="prevent-select">
+
+    <iframe
+        id="gmap_canvas"
+        title="Google Maps"
+        loading="eager"
+        allowfullscreen
+        src="https://www.google.com/maps/embed/v1/view?zoom=13&center=35.3387%2C25.1442&key=AIzaSyBrIPWhdxVyJaNBqe8_TM_FKHVsV59Wr4Y"
+    ></iframe>
+</div>
+
+<style>
+    #Timezone {
+        margin-bottom: -1rem;
+    }
+    #map {
+        height: 10rem;
+        width: 20rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    #gmap_canvas {
+        height: 100%;
+        width: 100%;
+        border-radius: 1rem;
+        /* border: 10px solid red; */
+    }
+</style>

@@ -1,0 +1,67 @@
+---
+---
+
+<script>
+  import * as THREE from 'three';
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera( 80, (window.innerWidth / window.innerHeight), 0.3, 800 );
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+  renderer.setAnimationLoop( animate );
+  document.body.appendChild( renderer.domElement );
+  document.body.getElementsByTagName('canvas')[0].style.zIndex = "-1";
+
+  // stars geometry
+  var stars = new Array(0);
+  for ( var i = 0; i < 10000; i ++ ) {
+    let x = THREE.MathUtils.randFloatSpread( 2500 );
+    let y = THREE.MathUtils.randFloatSpread( 2500 );
+    let z = THREE.MathUtils.randFloat(-500, -100 );
+    stars.push(x, y, z);
+  }
+
+  var starsGeometry = new THREE.BufferGeometry();
+  starsGeometry.setAttribute(
+    "position", new THREE.Float32BufferAttribute(stars, 3)
+  );
+
+  var starsMaterial = new THREE.PointsMaterial( {
+    color: 0x5e3c74,
+    size: 0.8 // Decrease this value to make stars smaller
+  } );
+  var starField = new THREE.Points( starsGeometry, starsMaterial );
+  scene.add( starField );
+
+
+
+  camera.position.z = 5;
+  let cameraRotation = 0.0002;
+  function animate() {
+
+    starField.rotation.x += cameraRotation;
+	starField.rotation.y += cameraRotation;
+
+    // Change rotation after a certain point to loop smoothly
+    if (starField.rotation.x > 0.3200 || starField.rotation.y > 0.3200) {
+      cameraRotation = cameraRotation * -1;
+    }
+
+    if (starField.rotation.x < 0 || starField.rotation.y < 0) {
+      cameraRotation = cameraRotation * -1;
+    }
+
+    renderer.render( scene, camera );
+  }
+
+  // Handle window resizing
+  window.addEventListener( 'resize', () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      renderer.setSize( width, height );
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+  });
+</script>
